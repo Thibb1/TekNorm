@@ -28,9 +28,8 @@ if command_exists teknorm; then
 fi
 
 # Clone TekNorm repository in the home directory
-echo "Cloning TekNorm repository..."
 cd ~
-git clone https://github.com/Thibb1/TekNorm.git
+git clone --quiet https://github.com/Thibb1/TekNorm.git
 mv TekNorm .teknorm
 
 # Install TekNorm
@@ -45,3 +44,4 @@ echo "\033[1;34m  |_| |___|_,_|_|___|___|_| |_|_|_| \033[0m"
 echo "\033[1;34m                                    \033[0m"
 
 echo "TekNorm has been installed successfully."
+echo "Run 'teknorm'"

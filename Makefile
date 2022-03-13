@@ -17,7 +17,6 @@ install:
 	@mkdir -p $(DEST)
 	@chmod +x $(NAME)
 	@ln -s $(NAME) $(DEST)/$(OUT)
-	@echo "TekNorm installed in $(DEST)"
 
 uninstall:
 	rm -f $(DEST)/$(OUT)
