@@ -26,7 +26,7 @@ sub line {
 }
 
 ExitError "git is not installed" unless (`which git`);
-ExitError "current directory is not a git repository" unless (`git rev-parse --is-inside-work-tree`);
+ExitError "current directory is not a git repository" unless (`git rev-parse --is-inside-work-tree 2>/dev/null`);
 
 my @folders = `find . -type d -not -path '*/\.*' -not -path '.'`;
 @folders = map { s/^\.\///; $_ } @folders;
