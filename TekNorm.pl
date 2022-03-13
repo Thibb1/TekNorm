@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # TekNorm_v0.0.1
 # Author: Thibb1
-# Last update: 13/03/2022
+# Last update: 14/03/2022
 
 use strict;
 use warnings;
@@ -64,7 +64,7 @@ sub G2 {
 
 sub G3 {
     return unless shift =~ /^#(?!(ifndef|endif))/;
-    print BOLD GREEN "[".shift.":".shift."] ", WHITE " Indentation of preprocessor directives";
+    print BOLD GREEN "[".shift.":".shift."] ", WHITE "Indentation of preprocessor directives";
     print " (G3)\n";
 }
 
@@ -87,8 +87,8 @@ sub G7 {
 }
 
 sub G8 {
-    return unless shift =~ / +$/;
-    print BOLD GREEN "[".shift.":".shift."] ", WHITE "Trailing spaces";
+    return unless shift =~ /[\t ]+$/;
+    print BOLD GREEN "[".shift.":".shift."] ", WHITE "Trailing whitespaces";
     print " (G8)\n";
 }
 
@@ -148,7 +148,7 @@ sub F4 {
 }
 
 sub F5 {
-    return unless shift =~ /(\w+ )+\w+\(\s*\)/;
+    return unless shift =~ /^(\w+ )+\w+\((\s*\)|(.*,){4,})/;
     print BOLD RED "[".shift.":".shift."] ", WHITE "Function arguments";
     print " (F5)\n";
 }
