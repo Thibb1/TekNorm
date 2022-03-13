@@ -22,4 +22,4 @@ uninstall:
 	rm -f $(DEST)/$(OUT)
 	@echo "TekNorm removed"
 
-.PHONY: all installe uninstall
+.PHONY: all install uninstall
