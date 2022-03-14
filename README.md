@@ -76,8 +76,9 @@ __Major__ | Minor
 
 ## TO-DO
 
-- [ ] Check for banned functions
 - [x] Auto-update on launch
+- [ ] Add options
+- [ ] Check for banned functions
 - [ ] Test on Fedora
 
 ## Bugs
