@@ -214,7 +214,7 @@ sub L5 {
 sub L6 {
     my $c = shift;
     my $file = shift;
-    return unless my @m = $c =~ /^(?>(?:\ +\w+ [^(=;]+(?:=.+;|;)\n+)+)+(?:(?!\}).*\n)+\n/gm;
+    return unless my @m = $c =~ /^(?>(?:\ +\w+ [^(=;]+(?:=[^;]+;|;)\n+)+)+(?:(?!\}).*\n)+\n/gm;
     foreach (@m) {
         print BOLD GREEN "[$file:".line($c, (index $c, $_)+length)."] ",
         WHITE "Line jumps";
