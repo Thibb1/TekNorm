@@ -28,7 +28,7 @@
     ```sh
     teknorm
     ```
-3. TekNrom will get analyze your current project files and warn you on code style issues.
+3. TekNorm will get analyze your current project files and warn you on code style issues.
 4. You can also run TekNorm on a specific files:
     ```sh
     teknorm <file_path>
