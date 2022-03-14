@@ -16,10 +16,11 @@ all:
 install:
 	@mkdir -p $(DEST)
 	@chmod +x $(NAME)
-	@ln -s $(NAME) $(DEST)/$(OUT)
+	@sudo ln -s $(NAME) $(DEST)/$(OUT)
 
 uninstall:
-	rm -f $(DEST)/$(OUT)
-	@echo "TekNorm removed"
+	@sudo rm -f $(DEST)/$(OUT)
 
-.PHONY: all install uninstall
+re: uninstall install
+
+.PHONY: all install uninstall re

@@ -23,6 +23,7 @@ if command_exists teknorm; then
     git remote update > /dev/null
     if [ "$(git status --porcelain)" ]; then
         git pull --rebase --quiet
+        make re
     fi
     exit 0
 fi
