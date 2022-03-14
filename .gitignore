@@ -1,1 +1,6 @@
-.DS_Store
+*
+!.gitignore
+!install.sh
+!Makefile
+!README.md
+!TekNorm.pl
