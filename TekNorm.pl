@@ -170,9 +170,9 @@ sub F7 {
 sub L1 {
     return unless shift =~ /
         (^(?!.*for)(.+;){2,})|
-        [^\s]+.*return|
+        [^\s]+.*\ return|
         (^.+=.*\([^\)]*\)\s*,)|
-        (^.+=[^\({]+,)/x;
+        (^(?!.*for\ ).+=[^\({]+,)/x;
     print BOLD RED "[".shift.":".shift."] ", WHITE "Code line content";
     print " (L1)\n";
 }
@@ -185,7 +185,7 @@ sub L2 {
 
 sub L3 {
     return unless shift =~ /
-        (return[^\s;])|
+        \ return[^\s;]|
         (\s+;$)|
         [^\s]+\ {2,}|
         ,[^\s]|
@@ -223,7 +223,7 @@ sub L6 {
 }
 
 sub V1 {
-    return unless shift =~ /^typedef(?!.*_t;)|^#define [^\s]*[^A-Z_ ]|^const(?! (\w+ )+[A-Z_]+ =)/;
+    return unless shift =~ /^typedef(?!.*_t;|.*_s \{)|^#define [^\s]*[^A-Z_ ]|^const(?! (\w+ )+[A-Z_]+ =)/;
     print BOLD RED "[".shift.":".shift."] ", WHITE "Naming identifiers";
     print " (V1)\n";
 }
@@ -235,7 +235,7 @@ sub V3 {
 }
 
 sub C1 {
-    return unless shift =~ /(if|else).{2,}if|^\ {12,}(?:if|else|for|while)/;
+    return unless shift =~ /(if|else).{2,}\ if|^\ {12,}(?:if|else|for|while)/;
     print BOLD GREEN "[".shift.":".shift."] ", WHITE " Conditional branching";
     print " (C1)\n";
 }
