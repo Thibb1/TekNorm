@@ -37,13 +37,16 @@ if command_exists teknorm; then
 fi
 
 # Clone TekNorm repository in the home directory
-cd ~
+cd /tmp/
+rm -rf /tmp/TekNorm
 git clone --quiet https://github.com/Thibb1/TekNorm.git
-mv TekNorm .teknorm
+mkdir -p ~/.teknorm
+cp -r /tmp/TekNorm/. ~/.teknorm
+rm -rf /tmp/TekNorm
 
 # Install TekNorm
-cd .teknorm
-sudo make install
+cd ~/.teknorm
+sudo make re
 
 # Fancy message to the user in blue
 echo -e "\033[1;34m _____     _   _____                \033[0m"
