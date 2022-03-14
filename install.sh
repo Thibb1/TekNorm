@@ -28,7 +28,6 @@ if command_exists teknorm; then
     LOCAL=$(git rev-parse @)
     REMOTE=$(git rev-parse @{u})
     if [ $LOCAL != $REMOTE ]; then
-        echo "TekNorm is already installed but not up to date. Please update it before continuing."
         git pull --rebase --quiet
         sudo make re
         echo "TekNorm has been updated."
