@@ -372,7 +372,7 @@ foreach my $file (grep { !/^\.gitignore$|^(?i:readme)\.md$/ } @files) {
         CFile $file;
     } elsif ($file =~ /^(.*\/)*[^.]+\.h$/) {
         HFile $file;
-    } elsif ($file =~ /^Makefile$/) {
+    } elsif ($file =~ /Makefile$/) {
         MkFile $file;
     } else {
         print BOLD RED "[$file] ", WHITE "Is probably a forbidden file.";
