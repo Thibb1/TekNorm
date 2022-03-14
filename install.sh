@@ -18,12 +18,20 @@ if ! command_exists make; then
     exit 1
 fi
 
+if ! command_exists perl; then
+    echo "Perl is not installed. Please install it before continuing."
+    exit 1
+fi
+
 if command_exists teknorm; then
     cd ~/.teknorm
-    git remote update > /dev/null
-    if [ "$(git status --porcelain)" ]; then
+    LOCAL=$(git rev-parse @)
+    REMOTE=$(git rev-parse @{u})
+    if [ $LOCAL != $REMOTE ]; then
+        echo "TekNorm is already installed but not up to date. Please update it before continuing."
         git pull --rebase --quiet
         sudo make re
+        echo "TekNorm has been updated."
     fi
     exit 0
 fi
@@ -38,11 +46,11 @@ cd .teknorm
 sudo make install
 
 # Fancy message to the user in blue
-echo "\033[1;34m _____     _   _____                \033[0m"
-echo "\033[1;34m|_   _|___| |_|   | |___ ___ _____  \033[0m"
-echo "\033[1;34m  | | | -_| '_| | | | . |  _|     | \033[0m"
-echo "\033[1;34m  |_| |___|_,_|_|___|___|_| |_|_|_| \033[0m"
-echo "\033[1;34m                                    \033[0m"
+echo -e "\033[1;34m _____     _   _____                \033[0m"
+echo -e "\033[1;34m|_   _|___| |_|   | |___ ___ _____  \033[0m"
+echo -e "\033[1;34m  | | | -_| '_| | | | . |  _|     | \033[0m"
+echo -e "\033[1;34m  |_| |___|_,_|_|___|___|_| |_|_|_| \033[0m"
+echo -e "\033[1;34m                                    \033[0m"
 
-echo "TekNorm has been installed successfully."
-echo "Run 'teknorm'"
+echo -e "TekNorm has been installed successfully."
+echo -e "Run 'teknorm'"
