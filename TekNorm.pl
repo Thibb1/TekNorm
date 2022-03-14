@@ -34,7 +34,7 @@ my @folders = `find . -type d -not -path '*/\.*' -not -path '.'`;
 @folders = map { s/^\.\///; $_ } @folders;
 
 my @files = @ARGV;
-@files = `git ls-files -o --exclude-standard` unless @files;
+@files = `git ls-files -o -c --exclude-standard` unless @files;
 
 chomp @files;
 chomp @folders;
