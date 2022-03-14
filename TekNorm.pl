@@ -126,7 +126,7 @@ sub O4 {
 }
 
 sub F2 {
-    return unless shift =~ /^(?!((\w+ )+[a-z]+(_[a-z]+)+\()|(\w+ )+[a-z]{2,}(_[a-z]+)*\()(\w+ )+\w+\(/;
+    return unless shift =~ /^(?!((\w+ )+[a-z]+(_[a-z\d]+)+\()|(\w+ )+[a-z]{2,}(_[a-z]+)*\()(\w+ )+\w+\(/;
     print BOLD RED "[".shift.":".shift."] ", WHITE "Naming functions";
     print " (F2)\n";
 }
