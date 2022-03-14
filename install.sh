@@ -4,27 +4,26 @@
 
 set -e
 
-# Check if a command exists
 command_exists() {
     command -v "$@" > /dev/null 2>&1
 }
 
-# Check if git is installed
 if ! command_exists git; then
     echo "Git is not installed. Please install it before continuing."
     exit 1
 fi
 
-# Check if make is installed
 if ! command_exists make; then
     echo "Make is not installed. Please install it before continuing."
     exit 1
 fi
 
-# Check if TekNorm is already installed
 if command_exists teknorm; then
     cd ~/.teknorm
-    git pull --quiet
+    git remote update > /dev/null
+    if [ "$(git status --porcelain)" ]; then
+        git pull --rebase --quiet
+    fi
     exit 0
 fi
 
