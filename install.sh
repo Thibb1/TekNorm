@@ -25,6 +25,7 @@ fi
 
 if command_exists teknorm; then
     cd ~/.teknorm
+    git fetch -q
     LOCAL=$(git rev-parse @)
     REMOTE=$(git rev-parse @{u})
     if [ $LOCAL != $REMOTE ]; then
