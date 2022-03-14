@@ -106,7 +106,7 @@ sub G8 {
 sub G9 {
     my $c = shift;
     my $file = shift;
-    return unless my @m = $c =~ /^\{\n\s*\n|^\{\n(?:(?!\}).+\n)*\s*\n(?:(?!\}).+\n)*\s*\n/gm;
+    return unless my @m = $c =~ /^\}\n\n|^\{\n\s*\n|^\{\n(?:(?!\}).+\n)*\s*\n(?:(?!\}).+\n)*\s*\n/gm;
     foreach (@m) {
         print BOLD GREEN "[$file:".(line($c,(index $c, $_)+length))."] ",
         WHITE "Leading/trailing lines";
