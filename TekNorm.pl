@@ -191,14 +191,14 @@ sub L3 {
         \)\{|
         ^(?!.*(?:return|if|else|else\ if|for|while|switch|\#define)).*\w+\ +\(|
         for\ \((\ |[^;]*;([^\s;]|\s+;|[^;]*;(\s+\)|[^\s)])))|
-        ^(?!.*\+\+|.*--|.*->).*([^ ][\+\-\/?:]|[\+\-\/?:][^= ])
+        ^(?!.*\+\+|.*--|.*->).*([^ ][\+\-\/?:]|[\+\-\/?:][^= \d])
         /x;
     print BOLD GREEN "[".shift.":".shift."] ", WHITE "Spaces";
     print " (L3)\n";
 }
 
 sub L4 {
-    return unless shift =~ /(if|else).*\}|^(\w+ )+\w+\(.*\{/;
+    return unless shift =~ /(if|else).*\}|^(\w+ )+\w+\(.*\{|^\ +{/;
     print BOLD GREEN "[".shift.":".shift."] ", WHITE "Curly brackets";
     print " (L4)\n";
 }
@@ -336,6 +336,7 @@ sub HFile {
         G6 $_, $file, $idx;
         G7 $_, $file, $idx;
         G8 $_, $file, $idx;
+        G9 $_, $file, $idx;
         F2 $_, $file, $idx;
         F5 $_, $file, $idx;
         F6 $_, $file, $idx;
@@ -348,6 +349,7 @@ sub HFile {
         V1 $_, $file, $idx;
         V3 $_, $file, $idx;
         C2 $_, $file, $idx;
+        C3 $_, $file, $idx;
     }
 }
 
