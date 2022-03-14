@@ -206,7 +206,7 @@ sub L4 {
 }
 
 sub L5 {
-    return unless shift =~ /^(\s*\w+\s*){2,},/;
+    return unless shift =~ /^(?>\s*\w+\s*){2,},/;
     print BOLD GREEN "[".shift.":".shift."] ", WHITE "Variable declaration";
     print " (L5)\n";
 }
@@ -292,6 +292,7 @@ sub CFile {
     C1a $content, $file;
     A3 $content, $file;
     $content =~ s/"(.*?)"/""/gm;
+    $content =~ s/'(.*?)'/''/gm;
     $content =~ s/^(\/\*|\*\*|\*\/).*//gm;
     $idx = 0;
     foreach (split /\n/, $content) {
