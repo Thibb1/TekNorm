@@ -30,7 +30,6 @@ if command_exists teknorm; then
     REMOTE=$(git rev-parse @{u})
     if [ $LOCAL != $REMOTE ]; then
         git pull --rebase --quiet
-        sudo make re
         echo "TekNorm has been updated."
     fi
     exit 0
