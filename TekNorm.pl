@@ -6,8 +6,17 @@
 use strict;
 use warnings;
 use Term::ANSIColor qw(:constants);
+use Getopt::Long;
 
 $Term::ANSIColor::AUTORESET = 1;
+
+my $update = 1;
+my $banned = 1;
+
+GetOptions(
+    'update|u:i' => \$update,
+    'banned|b:i' => \$banned,
+);
 
 sub ExitError {
     exit print STDERR BOLD RED "Error: ", WHITE shift . "\n";
@@ -25,7 +34,7 @@ sub line {
     return $idx;
 }
 
-system("curl -fsSL https://raw.githubusercontent.com/Thibb1/TekNorm/main/install.sh | sh");
+system("curl -fsSL https://raw.githubusercontent.com/Thibb1/TekNorm/main/install.sh | sh") if $update;
 
 ExitError "git is not installed" unless (`which git`);
 ExitError "current directory is not a git repository" unless (`git rev-parse --is-inside-work-tree 2>/dev/null`);
@@ -274,6 +283,12 @@ sub A3 {
     print " (A3)\n";
 }
 
+sub B {
+    return unless shift =~ /(?<!my_)(printf|scanf|memcpy|memset|memmove|strcat|strchar|strcpy|atoi|strlen|strstr|strncat|strncpy|strncasestr|strcmp|strncmp|strtok|strnlen|strdup|realloc)\(/;
+    print BOLD RED "[".shift.":".shift."] ", WHITE "Banned function $1";
+    print " (-b to ignore)\n";
+}
+
 sub CFile {
     my $file = shift;
     my $content = `cat $file`;
@@ -314,6 +329,7 @@ sub CFile {
         V3 $_, $file, $idx;
         C1 $_, $file, $idx;
         C2 $_, $file, $idx;
+        B $_, $file, $idx if $banned;
     }
 }
 
