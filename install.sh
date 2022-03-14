@@ -23,7 +23,8 @@ fi
 
 # Check if TekNorm is already installed
 if command_exists teknorm; then
-    echo "TekNorm is already installed."
+    cd ~/.teknorm
+    git pull --quiet
     exit 0
 fi
 
