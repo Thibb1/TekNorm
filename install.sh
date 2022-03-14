@@ -23,7 +23,7 @@ if command_exists teknorm; then
     git remote update > /dev/null
     if [ "$(git status --porcelain)" ]; then
         git pull --rebase --quiet
-        make re
+        sudo make re
     fi
     exit 0
 fi
@@ -35,7 +35,7 @@ mv TekNorm .teknorm
 
 # Install TekNorm
 cd .teknorm
-make install
+sudo make install
 
 # Fancy message to the user in blue
 echo "\033[1;34m _____     _   _____                \033[0m"

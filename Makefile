@@ -16,10 +16,10 @@ all:
 install:
 	@mkdir -p $(DEST)
 	@chmod +x $(NAME)
-	@sudo ln -s $(NAME) $(DEST)/$(OUT)
+	@ln -s $(NAME) $(DEST)/$(OUT)
 
 uninstall:
-	@sudo rm -f $(DEST)/$(OUT)
+	@rm -f $(DEST)/$(OUT)
 
 re: uninstall install
 
