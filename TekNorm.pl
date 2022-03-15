@@ -265,7 +265,7 @@ sub C1a {
 }
 
 sub C2 {
-    return unless shift =~ /\?.+(\?|[^ ]\()/;
+    return unless shift =~ /\?.+(\?|[^ \()]\()/;
     print BOLD GREEN "[".shift.":".shift."] ", WHITE "Ternary";
     print " (C2)\n";
 }
