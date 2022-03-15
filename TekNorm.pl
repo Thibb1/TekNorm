@@ -209,7 +209,7 @@ sub L3 {
         (?<![-+(])[-+=?:\/](?![-+>=\/\*]|.*\.h>)[^\s]|[^\s]:(?!\n)
         /x;
     print BOLD GREEN "[".shift.":".shift."] ", WHITE "Spaces";
-    print " (L3) '$_'\n";
+    print " (L3)\n";
 }
 
 sub L4 {
