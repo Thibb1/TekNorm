@@ -200,7 +200,7 @@ sub L3 {
         (\s+;$)|
         [^\s]+\ {2,}|
         ,[^\s]|
-        (?:,|\ (?:if|else|for|while|switch))[^\s]|
+        (?:,|\ (?:if|else|for|while|switch))\(|
         \)\{|
         ^(?!.*(?:return|if|else|else\ if|for|while|switch|\#define)).*\w+\ +\(|
         for\ \((\ |[^;]*;([^\s;]|\s+;|[^;]*;(\s+\)|[^\s)])))|
