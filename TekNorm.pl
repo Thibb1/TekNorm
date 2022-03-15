@@ -386,7 +386,7 @@ sub MkFile {
     }
 }
 
-foreach my $file (grep { !/^\.gitignore$|^(?i:readme)\.md$/ } @files) {
+foreach my $file (grep { !/\.gitignore$|(?i:readme)\.md$/ } @files) {
     if ($file =~ /^(.*\/)*[^.]+\.c$/) {
         CFile $file;
     } elsif ($file =~ /^(.*\/)*[^.]+\.h$/) {
