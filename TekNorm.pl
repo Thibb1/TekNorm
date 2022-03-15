@@ -234,7 +234,7 @@ sub L6 {
 }
 
 sub V1 {
-    return unless shift =~ /^typedef(?!.*_t;|.*_s \{)|^#define [^\s]*[^A-Z_ ]|^const(?! (\w+ )+[A-Z_]+ =)/;
+    return unless shift =~ /^typedef(?!.*_t;|.* \{)|^\} (?!.*_t;)|^#define [^\s]*[^A-Z_ ]|^const(?! (\w+ )+[A-Z_]+ =)/;
     print BOLD RED "[".shift.":".shift."] ", WHITE "Naming identifiers";
     print " (V1)\n";
 }
