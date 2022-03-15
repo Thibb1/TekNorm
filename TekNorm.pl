@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
 # TekNorm_v0.0.1
 # Author: Thibb1
-# Last update: 14/03/2022
+# Last update: 15/03/2022
 
 use strict;
 use warnings;
