@@ -5,6 +5,7 @@
 
 use strict;
 use warnings;
+no warnings qw(experimental::vlb);
 use Term::ANSIColor qw(:constants);
 use Getopt::Long;
 
@@ -286,7 +287,7 @@ sub A3 {
 }
 
 sub B {
-    return unless shift =~ /(?<!my_)(printf|scanf|memcpy|memset|memmove|strcat|strchar|strcpy|atoi|strlen|strstr|strncat|strncpy|strncasestr|strcmp|strncmp|strtok|strnlen|strdup|realloc)\(/;
+    return unless shift =~ /(?<!my_[\w]{1,4})(printf|scanf|memcpy|memset|memmove|strcat|strchar|strcpy|atoi|strlen|strstr|strncat|strncpy|strncasestr|strcmp|strncmp|strtok|strnlen|strdup|realloc)\(/;
     print BOLD RED "[".shift.":".shift."] ", WHITE "Banned function $1";
     print " (-b to ignore)\n";
 }
