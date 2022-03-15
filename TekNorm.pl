@@ -203,7 +203,7 @@ sub L3 {
         ,[^\s]|
         (?:,|\ (?:if|else|for|while|switch))\(|
         \)\{|
-        ^(?!.*(?:return|if|else|else\ if|for|while|switch|\#define)).*\w+\ +\(|
+        ^(?!.*(?:return|if|else|else\ if|for|while|switch|\#define)).*\w+\ +\([^*]|
         for\ \((\ |[^;]*;([^\s;]|\s+;|[^;]*;(\s+\)|[^\s)])))|
         [^\s](?<![-+=<>*\/(])[-+?=\/](?![-+>]|.*\.h>)|
         (?<![-+(])[-+=?:\/](?![-+>=\/\*]|.*\.h>)[^\s]|[^\s]:(?!\n)
