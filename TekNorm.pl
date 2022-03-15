@@ -12,10 +12,12 @@ $Term::ANSIColor::AUTORESET = 1;
 
 my $update = 1;
 my $banned = 1;
+my $comments = 0;
 
 GetOptions(
     'update|u:i' => \$update,
     'banned|b:i' => \$banned,
+    'comments|c' => \$comments,
 );
 
 sub ExitError {
@@ -358,7 +360,7 @@ sub HFile {
         G9 $_, $file, $idx;
         F2 $_, $file, $idx;
         F5 $_, $file, $idx;
-        F6 $_, $file, $idx;
+        F6 $_, $file, $idx if $comments;
         F7 $_, $file, $idx;
         L1 $_, $file, $idx;
         L2 $_, $file, $idx;
