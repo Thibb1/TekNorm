@@ -79,6 +79,7 @@ __Major__ | Minor
 - [x] Auto-update on launch
 - [x] Add options
 - [x] Check for banned functions
+- [ ] Auto fix option on common errors
 - [ ] Test on Fedora
 
 ## Bugs

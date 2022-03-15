@@ -14,6 +14,7 @@ $Term::ANSIColor::AUTORESET = 1;
 my $update = 1;
 my $banned = 1;
 my $comments = 0;
+my $auto_fix = 0;
 
 GetOptions(
     'update|u:i' => \$update,
@@ -182,8 +183,8 @@ sub F7 {
 sub L1 {
     return unless shift =~ /
         ^(?!.*for)(.+;){2,}|
-        [^\s]+.*\ return|
-        ^.+=.*\([^\)]*\)\s*,|
+        ^(?!\/).*[^\s]+.*\ return|
+        ^.+=(?!\ \{).*\([^\)]*\)\s*,|
         ^(?!.*for\ ).+=[^\({]+,/x;
     print BOLD RED "[".shift.":".shift."] ", WHITE "Code line content";
     print " (L1)\n";
@@ -202,11 +203,11 @@ sub L3 {
         [^\s]+\ {2,}|
         ,[^\s]|
         (?:,|\ (?:if|else|for|while|switch))\(|
-        \)\{|
+        \)\{$|
         ^(?!.*(?:return|if|else|else\ if|for|while|switch|\#define)).*\w+\ +\([^*]|
         for\ \((\ |[^;]*;([^\s;]|\s+;|[^;]*;(\s+\)|[^\s)])))|
-        [^\s](?<![-+=<>*(!\/])[-+?=\/](?![-+>]|.*\.h>)|
-        (?<![-+(])[-+=?:\/](?![-+>=\/\*]|.*\.h>)[^\s]|
+        [^\s](?<![-+=<>*(!%\{\/])[-+?=\/](?![-+>]|.*\.h>)|
+        (?<![-+(\{]|[=,?:<>]\ )[-+=?:\/](?![-+>=(*\/]|.*\.h>)[^\s]|
         [^\s]:(?!\n)
         /x;
     print BOLD GREEN "[".shift.":".shift."] ", WHITE "Spaces";
@@ -214,13 +215,13 @@ sub L3 {
 }
 
 sub L4 {
-    return unless shift =~ /(if|else).*\}|^(\w+ )+\w+\(.*\{|^\ +{/;
+    return unless shift =~ /(if|else) .*\}|^(\w+ )+\w+\(.*\{|^\ +{(?!.*\};)/;
     print BOLD GREEN "[".shift.":".shift."] ", WHITE "Curly brackets";
     print " (L4)\n";
 }
 
 sub L5 {
-    return unless shift =~ /^(?>\s*\w+\s*){2,},/;
+    return unless shift =~ /^(?>\s*\w+\s*){2,},.*[;]/;
     print BOLD GREEN "[".shift.":".shift."] ", WHITE "Variable declaration";
     print " (L5)\n";
 }
@@ -268,7 +269,7 @@ sub C1a {
 }
 
 sub C2 {
-    return unless shift =~ /\?.+(\?|[^ \()]\()/;
+    return unless shift =~ /\?.+(\?|[^ (A-Z]\()/;
     print BOLD GREEN "[".shift.":".shift."] ", WHITE "Ternary";
     print " (C2)\n";
 }
@@ -284,7 +285,7 @@ sub A3 {
     my $c = shift;
     my $file = shift;
     return unless $c =~ /^(?!.*\n)\s*/gm;
-    print BOLD GREEN "[$file:".line($c, length($c))."] ", WHITE "Line break at the end of file";
+    print BOLD GREEN "[$file:".(1+line($c, length($c)))."] ", WHITE "Line break at the end of file";
     print " (A3)\n";
 }
 
