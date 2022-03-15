@@ -180,10 +180,10 @@ sub F7 {
 
 sub L1 {
     return unless shift =~ /
-        (^(?!.*for)(.+;){2,})|
+        ^(?!.*for)(.+;){2,}|
         [^\s]+.*\ return|
-        (^.+=.*\([^\)]*\)\s*,)|
-        (^(?!.*for\ ).+=[^\({]+,)/x;
+        ^.+=.*\([^\)]*\)\s*,|
+        ^(?!.*for\ ).+=[^\({]+,/x;
     print BOLD RED "[".shift.":".shift."] ", WHITE "Code line content";
     print " (L1)\n";
 }
