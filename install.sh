@@ -24,6 +24,7 @@ if ! command_exists perl; then
 fi
 
 if command_exists teknorm; then
+    mkdir -p ~/.teknorm
     cd ~/.teknorm
     git fetch -q
     LOCAL=$(git rev-parse @)
