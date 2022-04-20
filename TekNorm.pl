@@ -185,7 +185,7 @@ sub L1 {
         ^(?!.*for)(.+;){2,}|
         ^(?!\/).*[^\s]+.*\ return|
         ^.+=(?!\ \{).*\([^\)]*\)\s*,|
-        ^(?!.*for\ ).+=[^\({]+,/x;
+        ^(?!.*for\ ).+\ =\ [^\({]+,/x;
     print BOLD RED "[".shift.":".shift."] ", WHITE "Code line content";
     print " (L1)\n";
 }
