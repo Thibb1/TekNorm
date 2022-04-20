@@ -1,7 +1,7 @@
 #!/usr/bin/env perl
-# TekNorm_v0.0.1
+# TekNorm_v0.0.2
 # Author: Thibb1
-# Last update: 15/03/2022
+# Last update: 20/04/2022
 
 use strict;
 use warnings;
@@ -215,9 +215,20 @@ sub L3 {
 }
 
 sub L4 {
-    return unless shift =~ /(if|else) .*\}|^(\w+ )+\w+\(.*\{|^\ +{(?!.*\};)/;
-    print BOLD GREEN "[".shift.":".shift."] ", WHITE "Curly brackets";
-    print " (L4)\n";
+    my $c = shift;
+    my $file = shift;
+    return unless my @m = $c =~ /
+        ^((if|else)\ .*\})|
+        ^((\w+\ )+\w+\(.*\{)|
+        ^(\ +{(?!.*\};))|
+        ^(\ .*\n\{)
+        /gmx;
+    foreach (@m) {
+        next unless $_;
+        print BOLD GREEN "[$file:".line($c, (index $c, $_)+length)."] ",
+        WHITE "Curly brackets";
+        print " (L4)\n";
+    }
 }
 
 sub L5 {
@@ -309,6 +320,7 @@ sub CFile {
     G1 $content, $file;
     G2 $content, $file;
     G9 $content, $file;
+    L4 $content, $file;
     L6 $content, $file;
     C1a $content, $file;
     A3 $content, $file;
@@ -329,7 +341,6 @@ sub CFile {
         L1 $_, $file, $idx;
         L2 $_, $file, $idx;
         L3 $_, $file, $idx;
-        L4 $_, $file, $idx;
         L5 $_, $file, $idx;
         V1 $_, $file, $idx;
         V3 $_, $file, $idx;
@@ -349,6 +360,7 @@ sub HFile {
         F3 $_, $file, $idx;
     }
     G1 $content, $file;
+    L4 $content, $file;
     A3 $content, $file;
     $content =~ s/"(.*?)"/""/gm;
     $content =~ s/'(.*?)'/''/gm;
@@ -369,7 +381,6 @@ sub HFile {
         L1 $_, $file, $idx;
         L2 $_, $file, $idx;
         L3 $_, $file, $idx;
-        L4 $_, $file, $idx;
         L5 $_, $file, $idx;
         V1 $_, $file, $idx;
         V3 $_, $file, $idx;
