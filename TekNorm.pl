@@ -14,16 +14,29 @@ $Term::ANSIColor::AUTORESET = 1;
 my $update = 1;
 my $banned = 1;
 my $comments = 0;
-my $auto_fix = 0;
+my $help = 0;
 
 GetOptions(
     'update|u:i' => \$update,
     'banned|b:i' => \$banned,
     'comments|c' => \$comments,
+    'help|h' => \$help,
 );
 
 sub ExitError {
     exit print STDERR BOLD RED "Error: ", WHITE shift . "\n";
+}
+
+sub ExitUsage {
+    exit print STDOUT "Usage: $0 [OPTION]... [FILE]...
+Check the coding style of a git repository or a file.
+
+Arguments:
+    FILE...              File/s to check. If not specified, the repository is checked.
+    --update|-u          Disable auto-update.
+    --banned|-b          Disable banned functions check.
+    --comments|-c        Disable comments check.
+    --help|-h            Print this help message.\n";
 }
 
 sub line {
@@ -40,6 +53,7 @@ sub line {
 
 system("curl -fsSL https://raw.githubusercontent.com/Thibb1/TekNorm/main/install.sh | sh") if $update;
 
+ExitUsage if $help;
 ExitError "git is not installed" unless (`which git`);
 ExitError "current directory is not a git repository" unless (`git rev-parse --is-inside-work-tree 2>/dev/null`);
 
@@ -221,7 +235,8 @@ sub L4 {
         ^((if|else)\ .*\})|
         ^((\w+\ )+\w+\(.*\{)|
         ^(\ +{(?!.*\};))|
-        ^(\ .*\n\{)
+        ^(\ .*\n\{)|
+        ^.*\t.*$
         /gmx;
     foreach (@m) {
         next unless $_;
@@ -336,7 +351,7 @@ sub CFile {
         G8 $_, $file, $idx;
         F2 $_, $file, $idx;
         F5 $_, $file, $idx;
-        F6 $_, $file, $idx;
+        F6 $_, $file, $idx if $comments;
         F7 $_, $file, $idx;
         L1 $_, $file, $idx;
         L2 $_, $file, $idx;
