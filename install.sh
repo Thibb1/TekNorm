@@ -2,8 +2,6 @@
 # TekNorm installation script
 # Author: Thibb1
 
-set -e
-
 command_exists() {
     command -v "$@" > /dev/null 2>&1
 }
@@ -48,11 +46,11 @@ cd ~/.teknorm
 sudo make re
 
 # Fancy message to the user in blue
-echo -e "\033[1;34m _____     _   _____                \033[0m"
-echo -e "\033[1;34m|_   _|___| |_|   | |___ ___ _____  \033[0m"
-echo -e "\033[1;34m  | | | -_| '_| | | | . |  _|     | \033[0m"
-echo -e "\033[1;34m  |_| |___|_,_|_|___|___|_| |_|_|_| \033[0m"
-echo -e "\033[1;34m                                    \033[0m"
+echo -e "\033[1;34m _____     _   _____                "
+echo "|_   _|___| |_|   | |___ ___ _____  "
+echo "  | | | -_| '_| | | | . |  _|     | "
+echo "  |_| |___|_,_|_|___|___|_| |_|_|_| "
+echo -e "                                    \033[0m"
 
-echo -e "TekNorm has been installed successfully."
-echo -e "Run 'teknorm'"
+echo "TekNorm has been installed successfully."
+echo "Run 'teknorm'"

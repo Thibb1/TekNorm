@@ -30,6 +30,7 @@ sub ExitError {
 sub ExitUsage {
     exit print STDOUT "Usage: $0 [OPTION]... [FILE]...
 Check the coding style of a git repository or a file.
+You must be in a git repository to use this script.
 
 Arguments:
     FILE...              File/s to check. If not specified, the repository is checked.
