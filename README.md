@@ -4,7 +4,7 @@
 
 1. Install TekNorm:
     ```sh
-    sh -c "$(curl -fsSL https://raw.githubusercontent.com/Thibb1/TekNorm/main/install.sh)"
+    bash -c "$(curl -fsSL https://raw.githubusercontent.com/Thibb1/TekNorm/main/install.sh)"
     ```
 2. Run TekNorm:
     ```sh
