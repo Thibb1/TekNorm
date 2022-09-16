@@ -2,22 +2,23 @@
 # TekNorm installation script
 # Author: Thibb1
 
-command_exists() {
-    command -v "$@" > /dev/null 2>&1
-}
+command_exists() { command -v "$@" > /dev/null 2>&1 }
+green() { printf "\033[32m${1}\033[0m\n\n"; }
+blue() { printf "\033[38;5;27m${1}\033[0m\n" ; }
+red() { printf "\033[38;5;196m${1}\033[0m\n"; }
 
 if ! command_exists git; then
-    echo "Git is not installed. Please install it before continuing."
+    red "Git is not installed. Please install it before continuing."
     exit 1
 fi
 
 if ! command_exists make; then
-    echo "Make is not installed. Please install it before continuing."
+    red "Make is not installed. Please install it before continuing."
     exit 1
 fi
 
 if ! command_exists perl; then
-    echo "Perl is not installed. Please install it before continuing."
+    red "Perl is not installed. Please install it before continuing."
     exit 1
 fi
 
@@ -28,7 +29,7 @@ if command_exists teknorm; then
     REMOTE=$(git rev-parse @{u})
     if [ $LOCAL != $REMOTE ]; then
         git pull --rebase --quiet
-        echo "TekNorm has been updated."
+        green "TekNorm has been updated."
     fi
     exit 0
 fi
@@ -45,12 +46,11 @@ rm -rf /tmp/TekNorm
 cd ~/.teknorm
 sudo make re
 
-# Fancy message to the user in blue
-echo -e "\033[1;34m _____     _   _____                "
-echo "|_   _|___| |_|   | |___ ___ _____  "
-echo "  | | | -_| '_| | | | . |  _|     | "
-echo "  |_| |___|_,_|_|___|___|_| |_|_|_| "
-echo -e "                                    \033[0m"
+blue " _____     _   _____                "
+blue "|_   _|___| |_|   | |___ ___ _____  "
+blue "  | | | -_| '_| | | | . |  _|     | "
+blue "  |_| |___|_,_|_|___|___|_| |_|_|_| "
+blue "                                    "
 
-echo "TekNorm has been installed successfully."
-echo "Run 'teknorm'"
+green "TekNorm has been installed successfully."
+green "Run 'teknorm'"
