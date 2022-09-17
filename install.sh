@@ -1,4 +1,4 @@
-#!/usr/bin/env bash
+#!/bin/bash
 # TekNorm installation script
 # Author: Thibb1
 
